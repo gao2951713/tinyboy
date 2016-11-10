@@ -31,24 +31,13 @@ var util = require('util'),
      * @property {Object} pobj 定义POST路由对象，存放路由对应的方法实现 pobj
      */
     pobj={};
-/**
- * 基础方法GET,将get请求的方法实现存入路由对象gobj中。
- * @method get
- * @param {String} url 请求的入口路径
- * @param {Function} fn 回调函数，为请求方法的实现
- * @param {Object} params 隐藏参数。get请求入参，默认，可直接使用。
- *
- */
-$.get = function (url,fn) {
-	gobj[url] = fn;
-}
+
 
 /**
  * 基础方法POST,将get请求的方法实现存入路由对象gobj中。
  * @method post
  * @param {String} url 请求的入口路径
  * @param {Function} fn 回调函数，为请求方法的实现
- * @param {Object} params 隐藏参数。post请求入参，默认，可直接使用。
  *
  */
 $.post = function(url,fn) {
@@ -81,44 +70,26 @@ $.addRoute = function (get, post) {
 }
 
 /**
- *
- * 基础方法,http请求解析后的路由跳转，请求到对应的处理方法。
- * @method route 
- * @param {String} pathname 请求路由
- * @param {Object} req 客户端请求，做为回调函数的参数。
- * @param {Object} res 服务器端响应,做为回调函数的参数。
+ * 基础方法GET,将get请求的方法实现存入路由对象gobj中。
+ * @method get
+ * @param {String} url 请求的入口路径
+ * @param {Function} fn 回调函数，为请求方法的实现
  *
  */
-$.route = function (pathname,req,res) {
-	
-	// 判断请求路由室否为get方法。	
-	// 如果在路由对象gobj中获取到对应的Function的话，
-	// 执行，并传入req，res对象作为参数。
-	// todo 如果没有取到对应的实现方法，判定为非法请求。进入非法请求处理。
-	if(req.method.toLowerCase() == "get") {
-		if(pathname in gobj) {
-			/**
-			 *
-			 * 也可使用var query=qs.parse(url.parse(req.url).query);
-			 * 区别就是url.parse的arguments[1]为true：
-			 * ...也能达到‘querystring库’的解析效果，而且不使用querystring
-			 */
-			let query = url.parse(req.url,true).query;
-			gobj[pathname](req,res,params= query);
-		}
-	}
-	// 判断请求路由是否为post方法。	
-	// 如果在路由对象pobj中获取到对应的Function的话，
-	// 执行，并传入req，res对象作为参数。
-	if(req.method.toLowerCase() == "post") {
-		if(pathname in pobj) {
-			pobj[pathname](req,res);
-		}
-	}
-
-	console.log("this is a route"+pathname);
-
+$.get = function (url,fn) {
+	gobj[url] = fn;
 }
+$.get('/',function(req,res){
+		$.inspect(query);
+		console.log("method get");
+	});
+function test() {
+var param = {a:10,b:20,c:'aaa'}
+
+	gobj["/"]({url:'/'},{},query = param);
+}
+test();
+
 
 module.exports.$ = $;
 module.exports.gobj = gobj;

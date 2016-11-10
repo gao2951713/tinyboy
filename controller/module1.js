@@ -6,10 +6,12 @@
  * @class Module1
  * @author Vincent Gao
  */
-var    $ = require("./router").$;
+var    $ = require("../router").$;
 module.exports = function () {
 	// 测试方法，添加get路由
 	$.get('/',function(req,res){
+		// $.inspect(arguments[2]);
+		$.inspect(params);
 		console.log(req.method+"\n");
 		console.log("method get");
 	});
