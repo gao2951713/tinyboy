@@ -4,9 +4,9 @@
   "description": "this is a tiny project of reactjs and nodejs",
   "main": "index.js",
   "scripts": {
-    "build": "browserify --debug  app.js > bundle.js",
+    "build": "browserify --debug  index.js > bundle.js",
     "build-dist": "NODE_ENV=production browserify index.js | uglifyjs -m  > bundle.min.js",
-    "watch": "watchify --debug src/* -o dist/",
+    "watch": "watchify --debug --verbose index.js -o dist/bundle.js",
     "demon": "nodemon --debug --watch src --watch libs"
   },
   "keywords": [
@@ -15,6 +15,7 @@
   "author": "VG",
   "license": "ISC",
   "dependencies": {
+    "supervisor": "^0.12.0"
   },
   "babel": {
     "presets": [
