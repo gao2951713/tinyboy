@@ -9,7 +9,6 @@
 │  
 └─controller	# 存放所有控制层路由定义。
   └─ module1.js		# 添加/路径访问时的get。post请求示例。供模块扩展参考。在index.js中使用。
-~~~
 ### 添加nodemon模块
 添加该进程守护模块，添加demon命令，输入`npm run demon`执行监听，默认监听src和libs文件夹内的一切文件变动。
 默认开启debug和watch,经测试，不能使用es6的import关键字来引入模块。
