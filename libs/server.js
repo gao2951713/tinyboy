@@ -43,6 +43,6 @@ module.exports.start = function (route){
 //	response.end('helo world \n');
 	}
 
-	http.createServer(onRequest).listen(3000);
-	console.log('server start at localhost:3000/')
+	http.createServer(onRequest).listen(4000);
+	console.log('server start at localhost:4000/')
 }
